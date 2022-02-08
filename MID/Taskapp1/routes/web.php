@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AppController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[AppController::class,'show']);
+Route::get('/login',[AppController::class,'login']);
+Route::get('/contact',[AppController::class,'contacts']);
+
+Route::get('/admin',[AppController::class,'admin']);
+Route::get('/student',[AppController::class,'student']);
+
+Route::get('/product',[ProductController::class,'getAll'])->name('getAll');
+Route::post('/create',[ProductController::class,'create'])->name('create');
+Route::get('/create',[ProductController::class,'createview'])->name('create');
+Route::post('/edit/{id}',[ProductController::class,'edit'])->name('edit');
